@@ -1,0 +1,17 @@
+p:=3; /* can choose any odd prime */
+f:=2; /* f can be any positive integer */
+d:=p^f+1; 
+M:=ZeroMatrix(RationalField(),d-2); /* the Gram matrix of P_i*/
+for i in [1..d-2] do
+    for j in [1..d-2] do
+        if i eq j then
+            M[i,j]:=((d-1)*(d-2))/(2*d);
+        elif (i-j) mod 2 eq 0 then
+            M[i,j]:=(1-d)/d;
+        end if;
+    end for;
+end for;
+det:=AbsoluteValue(Determinant(M));
+N:=(d-1)/(2*d);
+lowerdensity:= ((N/4)^((d-2)/2))/(Sqrt(det));
+lowerdensity;
